@@ -65,7 +65,7 @@ export const DEFAULT_SCROLLING_RESET_TIME_INTERVAL = 150;
  *   The left position of all items within a column must align.
  *   (Items may not span multiple columns.)
  */
-export default class Masonry extends PureComponent<Props> {
+export default class Masonry extends Component<Props> {
   static defaultProps = {
     autoHeight: false,
     keyMapper: identity,
@@ -205,7 +205,8 @@ export default class Masonry extends PureComponent<Props> {
           stopIndex = Math.max(stopIndex, index);
         }
 
-        children.push(
+        children = [
+          ...children,
           cellRenderer({
             index,
             isScrolling,
@@ -219,7 +220,7 @@ export default class Masonry extends PureComponent<Props> {
               width: cellMeasurerCache.getWidth(index),
             },
           }),
-        );
+        ];
       },
     );
 
@@ -245,7 +246,8 @@ export default class Masonry extends PureComponent<Props> {
       ) {
         stopIndex = index;
 
-        children.push(
+        children = [
+          ...children,
           cellRenderer({
             index: index,
             isScrolling,
@@ -255,7 +257,7 @@ export default class Masonry extends PureComponent<Props> {
               width: cellMeasurerCache.getWidth(index),
             },
           }),
-        );
+        ];
       }
     }
 
